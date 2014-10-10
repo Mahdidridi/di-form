@@ -1,0 +1,36 @@
+<link rel="import" href="../../components/polymer/polymer.html">
+
+<polymer-element name="di-form" attributes="id" on-keypress="{{keypressHandler}}">
+  <template>
+    <form id={{id}}>
+      <content></content>
+    </form>
+    <core-signals on-core-signal-submit="{{submit}}"></core-signals>
+  </template>
+
+  <script>
+    Polymer({
+      publish: {
+        valid: false
+      },
+      submit: function(){
+        // Get all paper inputs within this di-form
+        var inputs = this.querySelectorAll('paper-input');
+
+        // Set di-form's valid state
+        this.valid = [].reduce.call(inputs, function(prev, curr, i){
+          return prev && curr.validity.valid ? true : false;
+        }, true);
+
+        // Fire the submit event
+        this.fire('submit', this);
+      },
+      keypressHandler: function(e) {
+        if (e.which === 13){
+          // Set validity before firing submit event
+          this.submit();
+        }
+      }
+    });
+  </script>
+</polymer-element>

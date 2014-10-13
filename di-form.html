@@ -21,7 +21,7 @@
 
         // Set di-form's valid state
         this.valid = [].reduce.call(inputs, function(prev, curr, i){
-          return prev && curr.validity.valid ? true : false;
+          return prev && curr.checkValidity() ? true : false;
         }, true);
 
         // Fire the submit event

@@ -15,16 +15,26 @@
       publish: {
         valid: false
       },
+      ready: function() {
+        var inputs = this.getInputs();
+
+        [].forEach.call(inputs, function(el, i) {
+          el.addEventListener('change', function(ev) {
+            this.checkValidity();
+          });
+        })
+      },
+
       submit: function() {
         var _this = this;
 
         // Get all paper inputs within this di-form
-        var inputs = this.querySelectorAll('paper-input');
+        var inputs = this.getInputs();
 
         // Set di-form's valid state
         _this.valid = true;
-        [].forEach.call(inputs, function(e, i){
-          if (!e.checkValidity()) {
+        [].forEach.call(inputs, function(el, i) {
+          if (!el.checkValidity()) {
             _this.valid = false;
           }
         });
@@ -32,11 +42,16 @@
         // Fire the submit event
         this.fire('submit', this);
       },
+
       keypressHandler: function(e) {
         if (e.which === 13){
           // Set validity before firing submit event
           this.submit();
         }
+      },
+
+      getInputs: function(){
+        return this.querySelectorAll('paper-input');
       }
     });
   </script>

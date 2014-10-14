@@ -15,7 +15,7 @@
       publish: {
         valid: false
       },
-      submit: function(){
+      submit: function() {
         var _this = this;
 
         // Get all paper inputs within this di-form
@@ -28,10 +28,6 @@
             _this.valid = false;
           }
         });
-
-        // this.valid = [].reduce.call(inputs, function(prev, curr, i){
-        //   return prev && curr.checkValidity() ? true : false;
-        // }, true);
 
         // Fire the submit event
         this.fire('submit', this);

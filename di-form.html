@@ -16,13 +16,22 @@
         valid: false
       },
       submit: function(){
+        var _this = this;
+
         // Get all paper inputs within this di-form
         var inputs = this.querySelectorAll('paper-input');
 
         // Set di-form's valid state
-        this.valid = [].reduce.call(inputs, function(prev, curr, i){
-          return prev && curr.checkValidity() ? true : false;
-        }, true);
+        _this.valid = true;
+        [].forEach.call(inputs, function(e, i){
+          if (!e.checkValidity()) {
+            _this.valid = false;
+          }
+        });
+
+        // this.valid = [].reduce.call(inputs, function(prev, curr, i){
+        //   return prev && curr.checkValidity() ? true : false;
+        // }, true);
 
         // Fire the submit event
         this.fire('submit', this);

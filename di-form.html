@@ -2,7 +2,7 @@
 <link rel="import" href="../core-signals/core-signals.html">
 
 
-<polymer-element name="di-form" attributes="id" on-keypress="{{keypressHandler}}">
+<polymer-element name="di-form" on-keypress="{{keypressHandler}}">
   <template>
     <form id={{id}}>
       <content></content>
@@ -11,8 +11,12 @@
   </template>
 
   <script>
+    // XXX: Firefox and Safari choke when native DOM attributes
+    // are published using the attributes attribute on the polymer-element.
+    // Workaround is to publish here instead.
     Polymer({
       publish: {
+        id: null,
         valid: false
       },
 

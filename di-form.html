@@ -57,7 +57,7 @@
       },
 
       submitHandler: function(e, detail, sender) {
-        if (sender === this.querySelector('di-button')) {
+        if (detail === this.querySelector('di-button')) {
           this.submit();
         }
       },

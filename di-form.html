@@ -57,8 +57,10 @@
       },
 
       submitHandler: function(e, detail, sender) {
-        console.log(e, detail, sender);
-        this.submit();
+        // XXX: Should probably search parents better
+        if (detail.parentNode === this) {
+          this.submit();
+        }
       },
 
       getInputs: function(){

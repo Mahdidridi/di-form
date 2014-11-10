@@ -2,7 +2,7 @@
 <!-- <link rel="import" href="../core-signals/core-signals.html"> -->
 
 
-<polymer-element name="di-form" on-keypress="{{keypressHandler}}">
+<polymer-element name="di-form" on-keypress="{{keypressHandler}}" on-submit="{{submit}}">
   <template>
     <form id={{id}}>
       <content></content>
@@ -21,7 +21,7 @@
       },
 
       ready: function() {
-        this.addEventListener('submit', this.submit);
+        // this.addEventListener('submit', this.submit);
 
         var inputs = this.getInputs();
 

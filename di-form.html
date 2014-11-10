@@ -1,13 +1,13 @@
 <link rel="import" href="../polymer/polymer.html">
-<!-- <link rel="import" href="../core-signals/core-signals.html"> -->
+<link rel="import" href="../core-signals/core-signals.html">
 
 
-<polymer-element name="di-form" on-keypress="{{keypressHandler}}" on-submit="{{submit}}">
+<polymer-element name="di-form" on-keypress="{{keypressHandler}}">
   <template>
     <form id={{id}}>
       <content></content>
     </form>
-    <!-- <core-signals on-core-signal-submit="{{submit}}"></core-signals> -->
+    <core-signals on-core-signal-submit="{{submitHandler}}"></core-signals>
   </template>
 
   <script>
@@ -21,8 +21,6 @@
       },
 
       ready: function() {
-        // this.addEventListener('submit', this.submit);
-
         var inputs = this.getInputs();
 
         [].forEach.call(inputs, function(el, i) {
@@ -57,6 +55,11 @@
           this.submit();
         }
       },
+
+      subitHandler: function(e, detail, sender) {
+        console.log(e, detail, sender);
+        this.submit();
+      }
 
       getInputs: function(){
         return this.querySelectorAll('paper-inputs');

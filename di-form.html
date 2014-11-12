@@ -35,8 +35,10 @@
 
         // Set di-form's valid state
         _this.valid = true;
-        [].forEach.call(inputs, function(el, i) {
-          if (!el.checkValidity()) {
+        [].forEach.call(inputs, function(decorator, i) {
+          var isValid = decorator.querySelector('input, textarea').validity.valid;
+          decorator.isInvalid = !isValid;
+          if (!isValid) {
             _this.valid = false;
           }
         });
@@ -59,7 +61,7 @@
       },
 
       getInputs: function(){
-        return this.querySelectorAll('paper-inputs');
+        return this.querySelectorAll('paper-input-decorator');
       }
     });
   </script>

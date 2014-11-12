@@ -4,19 +4,15 @@
 
 <polymer-element name="di-form" on-keypress="{{keypressHandler}}">
   <template>
-    <form id={{id}}>
+    <form>
       <content></content>
     </form>
     <core-signals on-core-signal-submit="{{submitHandler}}"></core-signals>
   </template>
 
   <script>
-    // XXX: Firefox and Safari choke when native DOM attributes
-    // are published using the attributes attribute on the polymer-element.
-    // Workaround is to publish here instead.
     Polymer({
       publish: {
-        id: null,
         valid: false
       },
 

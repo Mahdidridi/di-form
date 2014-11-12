@@ -16,12 +16,14 @@
         valid: false
       },
 
-      ready: function() {
-        var inputs = this.getInputs();
+      domReady: function() {
+        var decorators = this.getDecorators();
 
-        [].forEach.call(inputs, function(el, i) {
-          el.addEventListener('change', function(ev) {
-            this.checkValidity();
+        [].forEach.call(decorators, function(decorator, i) {
+          var input = decorator.querySelector('input, textarea');
+          input.addEventListener('change', function(ev) {
+            var isValid = this.validity.valid;
+            decorator.isInvalid = !isValid;
           });
         });
 
@@ -31,7 +33,7 @@
         var _this = this;
 
         // Get all paper inputs within this di-form
-        var inputs = this.getInputs();
+        var inputs = this.getDecorators();
 
         // Set di-form's valid state
         _this.valid = true;
@@ -60,7 +62,7 @@
         }
       },
 
-      getInputs: function(){
+      getDecorators: function(){
         return this.querySelectorAll('paper-input-decorator');
       }
     });

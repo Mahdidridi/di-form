@@ -63,8 +63,12 @@
         }
       },
 
-      getDecorators: function(){
+      getDecorators: function() {
         return this.querySelectorAll('paper-input-decorator');
+      },
+
+      reset: function() {
+        this.querySelector('form').reset()
       }
     });
   </script>
